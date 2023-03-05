@@ -2,4 +2,68 @@
 CSS Variables
 --------------------------------------------------------------*/
 // Colors
-$white: #ffffff;
+$white: #fff;
+$black: #000;
+
+// Layout
+
+
+/*--------------------------------------------------------------
+CSS Breakpoints
+--------------------------------------------------------------*/
+
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin until-tablet {
+  @media (min-width: 0) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin from-tablet {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+/*--------------------------------------------------------------
+CSS Reset
+--------------------------------------------------------------*/
+
+* {
+  border-box: 0;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+	font-family: sans-serif;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", Arial, sans-serif;
+}
+

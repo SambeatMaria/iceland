@@ -1,1 +1,89 @@
 @import 'base.scss';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Reenie+Beanie&display=swap');
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 22px;
+  box-sizing: border-box;
+
+  @include from-tablet {
+    padding: 27px 36px;
+  }
+}
+
+.hero {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include until-tablet {
+    background-image: url('../assets/mobile-bg.jpg');
+    background-size: cover;
+  }
+
+  &-title {
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 16vmin;
+  }
+
+  &-video-bg {
+    display: none;
+
+    @include from-tablet {
+      display: block;
+      height: 100vh;
+      object-fit: cover;
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 40vw;
+      z-index: -1;
+    }
+  }
+}
+
+.burger-menu {
+  cursor: pointer;
+  height: 40px;
+  position: relative;
+  width: 45px;
+
+  &-inner {
+    width: 28px;
+    height: 21px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    span {
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      left: 0;
+      background-color: $black;
+
+      &:nth-child(1) {
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        top: 50%;
+      }
+
+      &:nth-child(3) {
+        top: 100%;
+      }
+    }
+  }
+}

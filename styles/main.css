@@ -1,5 +1,98 @@
 /*--------------------------------------------------------------
 CSS Variables
 --------------------------------------------------------------*/
+/*--------------------------------------------------------------
+CSS Breakpoints
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+CSS Reset
+--------------------------------------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Reenie+Beanie&display=swap");
+* {
+  border-box: 0;
+  margin: 0;
+  padding: 0; }
+
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%; }
+
+h1,
+h2,
+h3,
+p {
+  margin: 0; }
+
+body {
+  margin: 0;
+  font-family: "Montserrat", Arial, sans-serif; }
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 22px;
+  box-sizing: border-box; }
+  @media (min-width: 768px) {
+    header {
+      padding: 27px 36px; } }
+
+.hero {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  @media (min-width: 0) and (max-width: 767px) {
+    .hero {
+      background-image: url("../assets/mobile-bg.jpg");
+      background-size: cover; } }
+  .hero-title {
+    text-transform: uppercase;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 16vmin; }
+  .hero-video-bg {
+    display: none; }
+    @media (min-width: 768px) {
+      .hero-video-bg {
+        display: block;
+        height: 100vh;
+        object-fit: cover;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 40vw;
+        z-index: -1; } }
+
+.burger-menu {
+  cursor: pointer;
+  height: 40px;
+  position: relative;
+  width: 45px; }
+  .burger-menu-inner {
+    width: 28px;
+    height: 21px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+    .burger-menu-inner span {
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      left: 0;
+      background-color: #000; }
+      .burger-menu-inner span:nth-child(1) {
+        top: 0; }
+      .burger-menu-inner span:nth-child(2) {
+        top: 50%; }
+      .burger-menu-inner span:nth-child(3) {
+        top: 100%; }
 
 /*# sourceMappingURL=main.css.map */
