@@ -28,6 +28,70 @@ body {
   margin: 0;
   font-family: "Montserrat", Arial, sans-serif; }
 
+.slide-in-up {
+  animation: slideInUp ease-in-out 800ms; }
+
+.slide-in-down {
+  animation: slideInDown ease-in-out 800ms; }
+
+.fade-in-bottom-left {
+  animation: fadeInBottomLeft ease-in-out 800ms; }
+
+.fade-in-bottom-right {
+  animation: fadeInBottomRight ease-in-out 800ms; }
+
+.slide-in-right {
+  animation: slideInRight ease-in-out 300ms; }
+
+.slide-in-left {
+  animation: slideInLeft ease-in-out 800ms; }
+
+.fade-in {
+  animation: fadeIn ease-in 400ms; }
+
+.fade-out {
+  animation: fadeOut ease-in 800ms; }
+
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, 100%, 0); }
+  to {
+    transform: translate3d(0, 0, 0); } }
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, 0, 0); }
+  to {
+    transform: translate3d(0, 100%, 0); } }
+@keyframes fadeInBottomLeft {
+  from {
+    transform: translate3d(-100%, 100%, 0); }
+  to {
+    transform: translate3d(0, 0, 0); } }
+@keyframes fadeInBottomRight {
+  from {
+    transform: translate3d(0, 0, 0); }
+  to {
+    transform: translate3d(-100%, 100%, 0); } }
+@keyframes slideInRight {
+  from {
+    transform: translate3d(100%, 0, 0); }
+  to {
+    transform: translate3d(0, 0, 0); } }
+@keyframes slideInLeft {
+  from {
+    transform: translate3d(0, 0, 0); }
+  to {
+    transform: translate3d(100%, 0, 0); } }
+@keyframes fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@keyframes fadeOut {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
 header {
   position: absolute;
   top: 0;
@@ -68,16 +132,22 @@ header {
     .nav-left-pane {
       width: 50vw; } }
   .nav-left-pane-image {
-    height: 60vh;
     background-image: url("../assets/nav-img.jpg");
-    background-size: cover; }
+    background-size: cover;
+    width: 100%;
+    height: 100%; }
     @media (min-width: 768px) and (max-width: 1023px) {
       .nav-left-pane-image {
         background-image: url("../assets/nav-img-tablet.jpg"); } }
     @media (min-width: 1024px) {
       .nav-left-pane-image {
-        height: 75vh;
         background-image: url("../assets/nav-img-desktop.jpg"); } }
+    .nav-left-pane-image-wrapper {
+      height: 60vh;
+      overflow: hidden; }
+      @media (min-width: 1024px) {
+        .nav-left-pane-image-wrapper {
+          height: 75vh; } }
   .nav-left-pane-footer {
     display: flex;
     height: 40vh; }
@@ -85,27 +155,33 @@ header {
       .nav-left-pane-footer {
         height: 25vh; } }
 .nav-social-container {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: hidden; }
+  @media (min-width: 768px) {
+    .nav-social-container {
+      width: 35%; } }
+  @media (min-width: 1024px) {
+    .nav-social-container {
+      width: 25%; } }
+.nav-social-icons {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #ffa800;
-  width: 100%; }
+  height: 100%;
+  background-color: #ffa800; }
   @media (min-width: 768px) {
-    .nav-social-container {
-      width: 35%;
+    .nav-social-icons {
       background-color: #000; } }
-  @media (min-width: 1024px) {
-    .nav-social-container {
-      width: 25%; } }
-  .nav-social-container svg {
+  .nav-social-icons svg {
     cursor: pointer;
     width: 40px;
     color: #000; }
     @media (min-width: 768px) {
-      .nav-social-container svg {
+      .nav-social-icons svg {
         color: #ffa800; } }
-    .nav-social-container svg:not(:last-child) {
+    .nav-social-icons svg:not(:last-child) {
       margin-bottom: 1.75rem; }
 .nav-text {
   max-width: 300px;
@@ -133,10 +209,14 @@ header {
   color: #000;
   font-size: 36px;
   letter-spacing: 3px;
-  text-decoration: none; }
+  text-decoration: none;
+  transition: .3s ease; }
   @media (min-width: 768px) {
     .nav-item {
       font-size: 70px; } }
+  .nav-item:hover {
+    text-shadow: none;
+    color: #ffa800; }
   .nav-item:not(:last-child) {
     margin-bottom: 2.5rem; }
 
@@ -172,7 +252,6 @@ header {
   cursor: pointer;
   width: 60px;
   height: 45px;
-  position: relative;
   transform: scale(0.75);
   transition: .5s ease-in-out; }
   .burger-menu span {
@@ -182,10 +261,8 @@ header {
     width: 100%;
     background: #000;
     border-radius: 9px;
-    opacity: 1;
     left: 0;
-    transform: rotate(0deg);
-    transition: .25s ease-in-out; }
+    transition: all .25s ease-in-out; }
     .burger-menu span:nth-child(1) {
       top: 0px;
       transform-origin: left center; }

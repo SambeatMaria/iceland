@@ -1,4 +1,5 @@
-@import 'base.scss';
+@import 'base';
+@import 'animations';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Reenie+Beanie&display=swap');
 
 header {
@@ -55,17 +56,26 @@ header {
     }
 
     &-image {
-      height: 60vh;
       background-image: url('../assets/nav-img.jpg');
       background-size: cover;
+      width: 100%;
+      height: 100%;
 
       @include tablet {
         background-image: url('../assets/nav-img-tablet.jpg');
       }
 
       @include desktop {
-        height: 75vh;
         background-image: url('../assets/nav-img-desktop.jpg');
+      }
+
+      &-wrapper {
+        height: 60vh;
+        overflow: hidden;
+
+        @include desktop {
+          height: 75vh;
+        }
       }
     }
 
@@ -79,34 +89,45 @@ header {
     }
   }
 
-  &-social-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: $color-primary;
-    width: 100%;
-
-    @include from-tablet {
-      width: 35%;
-      background-color: $black;
-    }
-
-    @include desktop {
-      width: 25%;
-    }
-
-    svg {
-      cursor: pointer;
-      width: 40px;
-      color: $black;
+  &-social {
+    &-container {
+      width: 100%;
+      background-color: rgba(0, 0, 0, .8);
+      overflow: hidden;
 
       @include from-tablet {
-        color: $color-primary;
+        width: 35%;
       }
 
-      &:not(:last-child) {
-        margin-bottom: 1.75rem;
+      @include desktop {
+        width: 25%;
+      }
+    }
+
+    &-icons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      background-color: $color-primary;
+
+      @include from-tablet {
+        background-color: $black;
+      }
+
+      svg {
+        cursor: pointer;
+        width: 40px;
+        color: $black;
+
+        @include from-tablet {
+          color: $color-primary;
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 1.75rem;
+        }
       }
     }
   }
@@ -145,9 +166,15 @@ header {
     font-size: 36px;
     letter-spacing: 3px;
     text-decoration: none;
+    transition: .3s ease;
 
     @include from-tablet {
       font-size: 70px;
+    }
+
+    &:hover {
+      text-shadow: none;
+      color: $color-primary;
     }
 
     &:not(:last-child) {
@@ -195,9 +222,7 @@ header {
   cursor: pointer;
   width: 60px;
   height: 45px;
-  position: relative;
   transform: scale(.75);
-  // transform: rotate(0deg);
   transition: .5s ease-in-out;
 
   span {
@@ -207,10 +232,8 @@ header {
     width: 100%;
     background: $black;
     border-radius: 9px;
-    opacity: 1;
     left: 0;
-    transform: rotate(0deg);
-    transition: .25s ease-in-out;
+    transition: all .25s ease-in-out;
 
     &:nth-child(1) {
       top: 0px;
@@ -251,3 +274,4 @@ header {
     }
   }
 }
+
