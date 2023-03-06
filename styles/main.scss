@@ -10,17 +10,156 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 16px 22px;
-  box-sizing: border-box;
+  z-index: 2;
 
   @include from-tablet {
     padding: 27px 36px;
   }
+
+  .logo {
+    position: relative;
+  }
+}
+
+.nav {
+  &-container {
+    display: none;
+
+    &.active {
+      display: flex;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+  }
+
+  &-right-pane {
+    width: 60vw;
+    background-color: $black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include from-tablet {
+      width: 50vw;
+    }
+  }
+
+  &-left-pane {
+    width: 40vw;
+
+    @include from-tablet {
+      width: 50vw;
+    }
+
+    &-image {
+      height: 60vh;
+      background-image: url('../assets/nav-img.jpg');
+      background-size: cover;
+
+      @include tablet {
+        background-image: url('../assets/nav-img-tablet.jpg');
+      }
+
+      @include desktop {
+        height: 75vh;
+        background-image: url('../assets/nav-img-desktop.jpg');
+      }
+    }
+
+    &-footer {
+      display: flex;
+      height: 40vh;
+
+      @include desktop {
+        height: 25vh;
+      }
+    }
+  }
+
+  &-social-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $color-primary;
+    width: 100%;
+
+    @include from-tablet {
+      width: 35%;
+      background-color: $black;
+    }
+
+    @include desktop {
+      width: 25%;
+    }
+
+    svg {
+      cursor: pointer;
+      width: 40px;
+      color: $black;
+
+      @include from-tablet {
+        color: $color-primary;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 1.75rem;
+      }
+    }
+  }
+
+  &-text {
+    max-width: 300px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 26px;
+    color: white;
+
+    &-container {
+      display: none;
+
+      @include from-tablet {
+        width: 65%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $color-primary;
+        width: 75%;
+        padding: 1.5rem;
+      }
+    }
+  }
+
+  &-items {
+    text-align: center;
+  }
+
+  &-item {
+    display: block;
+    text-shadow: -1.2px 0 $color-primary, 0 1.2px $color-primary, 1.2px 0 $color-primary, 0 -1.2px $color-primary;
+    color: $black;
+    font-size: 36px;
+    letter-spacing: 3px;
+    text-decoration: none;
+
+    @include from-tablet {
+      font-size: 70px;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 2.5rem;
+    }
+  }
 }
 
 .hero {
+  display: flex;
   height: 100vh;
   width: 100vw;
-  display: flex;
   align-items: center;
   justify-content: center;
 
@@ -54,36 +193,61 @@ header {
 
 .burger-menu {
   cursor: pointer;
-  height: 40px;
+  width: 60px;
+  height: 45px;
   position: relative;
-  width: 45px;
+  transform: scale(.75);
+  // transform: rotate(0deg);
+  transition: .5s ease-in-out;
 
-  &-inner {
-    width: 28px;
-    height: 21px;
+  span {
+    display: block;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    height: 5px;
+    width: 100%;
+    background: $black;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
 
+    &:nth-child(1) {
+      top: 0px;
+      transform-origin: left center;
+    }
+
+    &:nth-child(2) {
+      top: 18px;
+      transform-origin: left center;
+    }
+
+    &:nth-child(3) {
+      top: 36px;
+      transform-origin: left center;
+    }
+  }
+
+  &.open {
     span {
-      position: absolute;
-      width: 100%;
-      height: 3px;
-      left: 0;
-      background-color: $black;
+      background-color: $color-primary;
+    }
 
-      &:nth-child(1) {
-        top: 0;
-      }
+    span:nth-child(1) {
+      transform: rotate(45deg);
+      top: -3px;
+      left: 8px;
+    }
 
-      &:nth-child(2) {
-        top: 50%;
-      }
+    span:nth-child(2) {
+      width: 0%;
+      opacity: 0;
+    }
 
-      &:nth-child(3) {
-        top: 100%;
-      }
+    span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 39px;
+      left: 8px;
     }
   }
 }

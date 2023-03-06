@@ -4,6 +4,7 @@ CSS Variables
 // Colors
 $white: #fff;
 $black: #000;
+$color-primary: #ffa800;
 
 // Layout
 
@@ -44,7 +45,7 @@ CSS Reset
 --------------------------------------------------------------*/
 
 * {
-  border-box: 0;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
