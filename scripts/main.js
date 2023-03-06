@@ -7,44 +7,42 @@ const navigationImage = document.querySelector(".nav-left-pane-image");
 const navigationSocial = document.querySelector(".nav-social-icons");
 const navigationCopy = document.querySelector(".nav-text-container");
 
+function toggleClassesOnCloseMenu(element, classIn, classOut) {
+  element.classList.remove(classIn);
+  element.classList.add(classOut);
+}
+
+function toggleClassesOnOpenMenu(element, classIn, classOut) {
+  if(element.classList.contains(classOut)) {
+    element.classList.remove(classOut);
+  }
+  element.classList.add(classIn);
+}
+
 openMobileMenuBtn.addEventListener("click", () => {
   if(openMobileMenuBtn.classList.contains("open")) {
     //// Cerrar menu
-    navigationContainer.classList.remove("slide-in-up");
-    navigationContainer.classList.add("slide-in-down");
-    navigationImage.classList.remove("fade-in-bottom-left");
-    navigationImage.classList.add("fade-in-bottom-right");
-    navigationSocial.classList.remove("slide-in-right");
-    navigationSocial.classList.add("slide-in-left");
-    navigationCopy.classList.remove("fade-in");
-    navigationCopy.classList.add("fade-out");
+    toggleClassesOnCloseMenu(navigationContainer, "slide-in-up", "slide-in-down");
+    toggleClassesOnCloseMenu(navigationImage, "fade-in-bottom-left", "fade-in-bottom-right");
+    toggleClassesOnCloseMenu(navigationSocial, "slide-in-right", "slide-in-left");
+    toggleClassesOnCloseMenu(navigationCopy, "fade-in", "fade-out");
+
     setTimeout(() => {
       openMobileMenuBtn.classList.remove("open");
       headerMenu.classList.remove("active");
-    }, "900");
+    }, "700");
 
     headerLogo.classList.add("parallax");
     MobileMenuBtnContainer.classList.add("parallax");
+
   } else {
     //// Abrir menu
     headerMenu.classList.add("active");
     openMobileMenuBtn.classList.add("open");
-    if(navigationContainer.classList.contains("slide-in-down")) {
-      navigationContainer.classList.remove("slide-in-down");
-    }
-    if(navigationImage.classList.contains("fade-in-bottom-right")) {
-      navigationImage.classList.remove("fade-in-bottom-right");
-    }
-    if(navigationSocial.classList.contains("slide-in-left")) {
-      navigationSocial.classList.remove("slide-in-left");
-    }
-    if(navigationCopy.classList.contains("fade-out")) {
-      navigationCopy.classList.remove("fade-out");
-    }
-    navigationContainer.classList.add("slide-in-up");
-    navigationImage.classList.add("fade-in-bottom-left");
-    navigationSocial.classList.add("slide-in-right");
-    navigationCopy.classList.add("fade-in");
+    toggleClassesOnOpenMenu(navigationContainer, "slide-in-up", "slide-in-down");
+    toggleClassesOnOpenMenu(navigationImage, "fade-in-bottom-left", "fade-in-bottom-right");
+    toggleClassesOnOpenMenu(navigationSocial, "slide-in-right", "slide-in-left");
+    toggleClassesOnOpenMenu(navigationCopy, "fade-in", "fade-out");
 
     headerLogo.classList.remove("parallax");
     MobileMenuBtnContainer.classList.remove("parallax");
