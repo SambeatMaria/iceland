@@ -7,7 +7,7 @@ CSS Breakpoints
 /*--------------------------------------------------------------
 CSS Reset
 --------------------------------------------------------------*/
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Reenie+Beanie&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;1,600&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
@@ -92,6 +92,28 @@ body {
     opacity: 1; }
   to {
     opacity: 0; } }
+@keyframes animateDash {
+  to {
+    stroke-dashoffset: 0; } }
+@keyframes slideInUpText {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 200px, 0); }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0); } }
+@keyframes slideInDownText {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0); }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 200px, 0); } }
+.nav-right-pane, .nav-social-icons, .hero {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 header {
   position: absolute;
   top: 0;
@@ -118,14 +140,30 @@ header {
     bottom: 0;
     right: 0; }
 .nav-right-pane {
+  position: relative;
   width: 60vw;
-  background-color: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
+  background-color: #000; }
   @media (min-width: 768px) {
     .nav-right-pane {
       width: 50vw; } }
+  .nav-right-pane .language-switch {
+    display: none; }
+    @media (min-width: 768px) {
+      .nav-right-pane .language-switch {
+        position: absolute;
+        top: 32px;
+        left: 32px;
+        display: flex;
+        align-items: center;
+        color: #ffa800; } }
+    .nav-right-pane .language-switch-item {
+      font-style: italic;
+      font-weight: 600;
+      font-size: 14px;
+      text-decoration: none;
+      color: #ffa800; }
+    .nav-right-pane .language-switch-separator {
+      padding: 0 6px 0 8px; }
 .nav-left-pane {
   width: 40vw; }
   @media (min-width: 768px) {
@@ -165,24 +203,25 @@ header {
     .nav-social-container {
       width: 25%; } }
 .nav-social-icons {
-  display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   background-color: #ffa800; }
   @media (min-width: 768px) {
     .nav-social-icons {
       background-color: #000; } }
-  .nav-social-icons svg {
+  .nav-social-icons .social-icon {
     cursor: pointer;
     width: 40px;
-    color: #000; }
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: animateDash 2s ease-in-out alternate infinite;
+    color: #000;
+    pointer-events: none; }
     @media (min-width: 768px) {
-      .nav-social-icons svg {
+      .nav-social-icons .social-icon {
         color: #ffa800; } }
-    .nav-social-icons svg:not(:last-child) {
-      margin-bottom: 1.75rem; }
+    .nav-social-icons .social-icon:not(:last-child) {
+      margin-bottom: 1.5rem; }
 .nav-text {
   max-width: 300px;
   text-align: center;
@@ -210,7 +249,8 @@ header {
   font-size: 36px;
   letter-spacing: 3px;
   text-decoration: none;
-  transition: .3s ease; }
+  transition: .3s ease;
+  opacity: 1; }
   @media (min-width: 768px) {
     .nav-item {
       font-size: 70px; } }
@@ -221,18 +261,14 @@ header {
     margin-bottom: 2.5rem; }
 
 .hero {
-  display: flex;
   height: 100vh;
-  width: 100vw;
-  align-items: center;
-  justify-content: center; }
+  width: 100vw; }
   @media (min-width: 0) and (max-width: 767px) {
     .hero {
       background-image: url("../assets/mobile-bg.jpg");
       background-size: cover; } }
   .hero-title {
     text-transform: uppercase;
-    font-family: 'Montserrat';
     font-weight: 700;
     font-size: 16vmin; }
   .hero-video-bg {
@@ -252,7 +288,7 @@ header {
   cursor: pointer;
   width: 60px;
   height: 45px;
-  transform: scale(0.75);
+  transform: scale(0.5);
   transition: .5s ease-in-out; }
   .burger-menu span {
     display: block;
@@ -264,7 +300,7 @@ header {
     left: 0;
     transition: all .25s ease-in-out; }
     .burger-menu span:nth-child(1) {
-      top: 0px;
+      top: 0;
       transform-origin: left center; }
     .burger-menu span:nth-child(2) {
       top: 18px;
@@ -279,7 +315,7 @@ header {
     top: -3px;
     left: 8px; }
   .burger-menu.open span:nth-child(2) {
-    width: 0%;
+    width: 0;
     opacity: 0; }
   .burger-menu.open span:nth-child(3) {
     transform: rotate(-45deg);

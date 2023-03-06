@@ -1,6 +1,12 @@
 @import 'base';
 @import 'animations';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Reenie+Beanie&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;1,600&display=swap');
+
+%flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 header {
   position: absolute;
@@ -37,14 +43,38 @@ header {
   }
 
   &-right-pane {
+    @extend %flex-center;
+    position: relative;
     width: 60vw;
     background-color: $black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
     @include from-tablet {
       width: 50vw;
+    }
+
+    .language-switch {
+      display: none;
+
+      @include from-tablet {
+        position: absolute;
+        top: 32px;
+        left: 32px;
+        display: flex;
+        align-items: center;
+        color: $color-primary;
+      }
+
+      &-item {
+        font-style: italic;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        color: $color-primary;
+      }
+
+      &-separator {
+        padding: 0 6px 0 8px;
+      }
     }
   }
 
@@ -105,10 +135,8 @@ header {
     }
 
     &-icons {
-      display: flex;
+      @extend %flex-center;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
       height: 100%;
       background-color: $color-primary;
 
@@ -116,17 +144,21 @@ header {
         background-color: $black;
       }
 
-      svg {
+      .social-icon {
         cursor: pointer;
         width: 40px;
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+        animation: animateDash 2s ease-in-out alternate infinite;
         color: $black;
+        pointer-events: none;
 
         @include from-tablet {
           color: $color-primary;
         }
 
         &:not(:last-child) {
-          margin-bottom: 1.75rem;
+          margin-bottom: 1.5rem;
         }
       }
     }
@@ -167,6 +199,7 @@ header {
     letter-spacing: 3px;
     text-decoration: none;
     transition: .3s ease;
+    opacity: 1;
 
     @include from-tablet {
       font-size: 70px;
@@ -184,11 +217,9 @@ header {
 }
 
 .hero {
-  display: flex;
+  @extend %flex-center;
   height: 100vh;
   width: 100vw;
-  align-items: center;
-  justify-content: center;
 
   @include until-tablet {
     background-image: url('../assets/mobile-bg.jpg');
@@ -197,7 +228,6 @@ header {
 
   &-title {
     text-transform: uppercase;
-    font-family: 'Montserrat';
     font-weight: 700;
     font-size: 16vmin;
   }
@@ -222,7 +252,7 @@ header {
   cursor: pointer;
   width: 60px;
   height: 45px;
-  transform: scale(.75);
+  transform: scale(.5);
   transition: .5s ease-in-out;
 
   span {
@@ -236,7 +266,7 @@ header {
     transition: all .25s ease-in-out;
 
     &:nth-child(1) {
-      top: 0px;
+      top: 0;
       transform-origin: left center;
     }
 
@@ -263,7 +293,7 @@ header {
     }
 
     span:nth-child(2) {
-      width: 0%;
+      width: 0;
       opacity: 0;
     }
 
